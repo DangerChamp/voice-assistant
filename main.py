@@ -62,6 +62,8 @@ def main():
                     + str(len(tasks.readlines()))
                     + " currently in your list."
                 )
+                except TypeError:
+                    respond("Could you please repeat that?")
                 tasks.close()
             elif deleteTask:
                 tasks = open("tasks.txt", "r")
