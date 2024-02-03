@@ -75,7 +75,12 @@ def main():
                         tasks.write(task)
                 tasks.close()
                 deleteTask = False
-            elif "add a task" in command:
+                    else:
+                        respond("Task '" + command + "' not found in the task list.")
+                        deleteTask = False
+                except TypeError:
+                    respond("Could you please repeat that?")
+            elif "add" and "task" in command:
                 listeningToTask = True
                 respond("Sure, what is the task?")
             elif "list tasks" in command:
@@ -84,10 +89,10 @@ def main():
                 for task in tasks:
                     respond(task)
                 tasks.close()
-            elif "delete task" in command:
+            elif "delete" and "task" in command:
                 deleteTask = True
                 respond("What task would you like to delete?")
-            elif "take a screenshot" in command:
+            elif "take" and "screenshot" in command:
                 pyautogui.screenshot("screenshot.png")
                 respond("I took a screenshot for you.")
             elif "open chrome" in command:
