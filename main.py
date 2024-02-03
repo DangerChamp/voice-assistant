@@ -51,17 +51,18 @@ def main():
         if command and triggerKeyword in command or listeningToTask:
             if listeningToTask:
                 tasks = open("tasks.txt", "a")
-                tasks.write(command + "\n")
-                listeningToTask = False
-                tasks.close()
-                tasks = open("tasks.txt", "r")
-                respond(
-                    "Adding "
-                    + command
-                    + " to your task list. You have "
-                    + str(len(tasks.readlines()))
-                    + " currently in your list."
-                )
+                try:
+                    tasks.write(command + "\n")
+                    listeningToTask = False
+                    tasks.close()
+                    tasks = open("tasks.txt", "r")
+                    respond(
+                        "Adding "
+                        + command
+                        + " to your task list. You have "
+                        + str(len(tasks.readlines()))
+                        + " currently in your list."
+                    )
                 except TypeError:
                     respond("Could you please repeat that?")
                 tasks.close()
